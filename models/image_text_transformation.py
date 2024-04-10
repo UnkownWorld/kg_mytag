@@ -25,7 +25,8 @@ class ImageTextTransformation:
         self.ref_image = None
     
     def init_models(self):
-        openai_key = os.environ['OPENAI_KEY']
+        #openai_key = os.environ['OPENAI_KEY']
+        openai_key = 'sssss'
         print(self.args)
         print('\033[1;34m' + "Welcome to the Image2Paragraph toolbox...".center(50, '-') + '\033[0m')
         print('\033[1;33m' + "Initializing models...".center(50, '-') + '\033[0m')
