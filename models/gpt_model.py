@@ -15,7 +15,9 @@ class ImageToText:
         prompt_suffix = """\n There are some rules:
         Show object, color and position.
         Use nouns rather than coordinates to show position information of each object.
+        Don't get appear Image Resolution
         No more than 7 sentences.
+        No more than 65 words.
         Only use one paragraph.
         Describe position of each object.
         Do not appear number.
