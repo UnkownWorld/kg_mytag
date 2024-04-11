@@ -5,7 +5,7 @@ from models.image_text_transformation import ImageTextTransformation
 from utils.util import display_images_and_text
 
 def replace_words(sentence):
-    words_to_replace = ["boy", "girl", "woman", "doll", "man", "child"]
+    words_to_replace = ["boy", "girl", "doll", "man", "child"]
     replaced_word = "woman"
     
     for word in words_to_replace:
