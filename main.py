@@ -1,7 +1,18 @@
 import argparse
+import os
 from models.image_text_transformation import ImageTextTransformation
 from utils.util import display_images_and_text
 
+def write_tag(image_name,tag,folder_path):
+    # 获取图片文件名（不包括扩展名）  
+    image_name = os.path.splitext(os.path.basename(image_path))[0]  
+    # 构建文本文件的完整路径  
+    text_file_path = os.path.join(folder_path, image_name + '.txt') 
+    # 将内容写入文本文件  
+    with open(text_file_path, 'w', encoding='utf-8') as text_file:  
+        text_file.write(tag)  
+        print(f"Text file created: {text_file_path},{tag}") 
+        
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--image_src', default='examples/1.jpg')
@@ -22,11 +33,15 @@ if __name__ == '__main__':
 
     processor = ImageTextTransformation(args)
     generated_text = processor.image_to_text(args.image_src)
-    generated_image = processor.text_to_image(generated_text)
+    #generated_image = processor.text_to_image(generated_text)
+    image_path = args.image_src
+    name = os.path.splitext(os.path.basename(image_path))[0]
+    dir = os.path.dirname(image_path)
+    write_tag(name,generated_text,dir)
     ## then text to image
     print("*" * 50)
     print("Generated Text:")
     print(generated_text)
     print("*" * 50)
 
-    results = display_images_and_text(args.image_src, generated_image, generated_text, args.out_image_name)
+    #results = display_images_and_text(args.image_src, generated_image, generated_text, args.out_image_name)
