@@ -12,7 +12,12 @@ def write_tag(image_name,tag,folder_path):
     with open(text_file_path, 'w', encoding='utf-8') as text_file:  
         text_file.write(tag)  
         print(f"Text file created: {text_file_path},{tag}") 
-        
+def get_image_paths(folder_path):  
+    image_paths = []  
+    valid_images = ['*.jpg', '*.jpeg', '*.png', '*.bmp', '*.gif', '*.tiff']  
+    for ext in valid_images:  
+        image_paths.extend(glob.glob(os.path.join(folder_path, ext)))  
+    return image_paths        
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--image_dir', default='/kaggle/working/xuejie')
@@ -33,8 +38,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     processor = ImageTextTransformation(args)
-    for image_src in args.image_dir:        
-        generated_text = processor.image_to_text(args.image_src)
+    image_dirs = get_image_paths(args.image_dir)
+    for image_src in image_dirs:        
+        generated_text = processor.image_to_text(image_src)
         image_path = image_src
         name = os.path.splitext(os.path.basename(image_path))[0]
         dir = os.path.dirname(image_path)
