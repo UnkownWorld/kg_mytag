@@ -4,6 +4,14 @@ import glob
 from models.image_text_transformation import ImageTextTransformation
 from utils.util import display_images_and_text
 
+def replace_words(sentence):
+    words_to_replace = ["boy", "girl", "woman", "doll", "man", "child"]
+    replaced_word = "woman"
+    
+    for word in words_to_replace:
+        sentence = sentence.replace(word, replaced_word)
+    
+    return sentence
 def write_tag(image_name,tag,folder_path):
     # 获取图片文件名（不包括扩展名）  
     image_name = os.path.splitext(os.path.basename(image_path))[0]  
@@ -45,6 +53,7 @@ if __name__ == '__main__':
         image_path = image_src
         name = os.path.splitext(os.path.basename(image_path))[0]
         dir = os.path.dirname(image_path)
+        generated_text = replace_words(generated_text)
         write_tag(name,generated_text,dir)
     ## then text to image
         print("*" * 50)
