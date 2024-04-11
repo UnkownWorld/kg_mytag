@@ -1,9 +1,9 @@
-import openai
+#import openai
 
 class ImageToText:
     def __init__(self, api_key, gpt_version="gpt-3.5-turbo"):
         self.template = self.initialize_template()
-        openai.api_key = api_key
+       # openai.api_key = api_key
         self.gpt_version = gpt_version
 
     def initialize_template(self):
@@ -30,15 +30,16 @@ class ImageToText:
         print('\033[1;35m' + '*' * 100 + '\033[0m')
         print('\nStep4, Paragraph Summary with GPT-3:')
         print('\033[1;34m' + "Question:".ljust(10) + '\033[1;36m' + question + '\033[0m')
-        completion = openai.ChatCompletion.create(
-            model=self.gpt_version, 
-            messages = [
-            {"role": "user", "content" : question}]
-        )
+        #completion = openai.ChatCompletion.create(
+        #    model=self.gpt_version, 
+        #    messages = [
+        #    {"role": "user", "content" : question}]
+        #)
 
         print('\033[1;34m' + "ChatGPT Response:".ljust(18) + '\033[1;32m' + completion['choices'][0]['message']['content'] + '\033[0m')
         print('\033[1;35m' + '*' * 100 + '\033[0m')
-        return completion['choices'][0]['message']['content']
+        return question
+        #return completion['choices'][0]['message']['content']
 
     def paragraph_summary_with_gpt_debug(self, caption, dense_caption, width, height):
         question = self.template.format(width=width, height=height, caption=caption, dense_caption=dense_caption)
