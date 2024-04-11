@@ -15,6 +15,7 @@ def write_tag(image_name,tag,folder_path):
         
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument('--image_dir', default='/kaggle/working/xuejie')
     parser.add_argument('--image_src', default='examples/1.jpg')
     parser.add_argument('--out_image_name', default='output/1_result.jpg')
     parser.add_argument('--gpt_version', choices=['gpt-3.5-turbo', 'gpt4'], default='gpt-3.5-turbo')
@@ -32,16 +33,16 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     processor = ImageTextTransformation(args)
-    generated_text = processor.image_to_text(args.image_src)
-    #generated_image = processor.text_to_image(generated_text)
-    image_path = args.image_src
-    name = os.path.splitext(os.path.basename(image_path))[0]
-    dir = os.path.dirname(image_path)
-    write_tag(name,generated_text,dir)
+    for image_src in arg.image_dir:        
+        generated_text = processor.image_to_text(args.image_src)
+        image_path = image_src
+        name = os.path.splitext(os.path.basename(image_path))[0]
+        dir = os.path.dirname(image_path)
+        write_tag(name,generated_text,dir)
     ## then text to image
-    print("*" * 50)
-    print("Generated Text:")
-    print(generated_text)
-    print("*" * 50)
+        print("*" * 50)
+        print("Generated Text:")
+        print(generated_text)
+        print("*" * 50)
 
     #results = display_images_and_text(args.image_src, generated_image, generated_text, args.out_image_name)
