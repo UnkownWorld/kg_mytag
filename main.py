@@ -1,5 +1,6 @@
 import argparse
 import os
+import glob
 from models.image_text_transformation import ImageTextTransformation
 from utils.util import display_images_and_text
 
