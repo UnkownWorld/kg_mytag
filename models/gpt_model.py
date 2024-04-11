@@ -36,7 +36,7 @@ class ImageToText:
         #    {"role": "user", "content" : question}]
         #)
 
-        print('\033[1;34m' + "ChatGPT Response:".ljust(18) + '\033[1;32m' + completion['choices'][0]['message']['content'] + '\033[0m')
+        #print('\033[1;34m' + "ChatGPT Response:".ljust(18) + '\033[1;32m' + completion['choices'][0]['message']['content'] + '\033[0m')
         print('\033[1;35m' + '*' * 100 + '\033[0m')
         return question
         #return completion['choices'][0]['message']['content']
