@@ -33,7 +33,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     processor = ImageTextTransformation(args)
-    for image_src in arg.image_dir:        
+    for image_src in args.image_dir:        
         generated_text = processor.image_to_text(args.image_src)
         image_path = image_src
         name = os.path.splitext(os.path.basename(image_path))[0]
