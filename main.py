@@ -1,16 +1,21 @@
 import argparse
 import os
 import glob
+import re
 from models.image_text_transformation import ImageTextTransformation
 from utils.util import display_images_and_text
 
 def replace_words(sentence):
-    words_to_replace = ["boy", "girl", "doll", "child"]
-    replaced_word = "woman"
-    
+    words_to_replace = ["boy", "girl", "doll", "child","man"]
+    replaced_word = "woman"  
     for word in words_to_replace:
-        sentence = sentence.replace(word, replaced_word)
-    
+        sentence = re.sub(r'\b' + re.escape(word) + r'\b', replaced_word, sentence)
+    return sentence
+def replace_words(sentence):
+    words_to_replace = ["boy", "girl", "doll", "child"]
+    replaced_word = "woman"  
+    for word in words_to_replace:
+        sentence = sentence.replace(word, replaced_word)    
     return sentence
 def write_tag(image_name,tag,folder_path):
     # 获取图片文件名（不包括扩展名）  
